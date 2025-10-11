@@ -11,7 +11,7 @@ Documenting my transition from ESL Management to Cybersecurity, focusing on Comp
 
 ---
 
-## 🛠️ Hands-On Experience & Home Lab Documentation
+## Hands-On Experience & Home Lab Documentation
 
 | Project/Skill | Status | Documentation Link | Key Skills Demonstrated |
 | :--- | :--- | :--- | :--- |
@@ -22,12 +22,12 @@ Documenting my transition from ESL Management to Cybersecurity, focusing on Comp
 
 ---
 
-## 📝 Certifications and Study Progress
+## Certifications and Study Progress
 * **CompTIA A+ (220-1101 & 220-1102):** Studying since September 2025. Mock exam scores average **74%** (Jason Dion).
 * **[Future Certification: CompTIA Network+, CompTIA Security+]**
 
 ---
 
-## 💡 Contact and Next Steps
+## Contact and Next Steps
 * **LinkedIn:** [TBA]
 * **Seeking:** Remote Entry-Level IT Support/Help Desk or Trainee Cybersecurity roles. Ready to relocate.
