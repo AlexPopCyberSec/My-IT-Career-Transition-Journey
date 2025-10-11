@@ -1,4 +1,4 @@
-# 🐧 Linux and Virtualization Home Lab Practice
+# Linux and Virtualization Home Lab Practice
 
 ## Overview
 This is my first home lab project designed to apply and reinforce core concepts from the CompTIA A+ certification, focusing on Operating Systems, Virtualization, Networking, and Security fundamentals.
