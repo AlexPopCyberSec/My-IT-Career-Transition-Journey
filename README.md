@@ -16,7 +16,7 @@ Documenting my transition from ESL Management to Cybersecurity, focusing on Comp
 | Project/Skill | Status | Documentation Link | Key Skills Demonstrated |
 | :--- | :--- | :--- | :--- |
 | **CompTIA A+ Preparation** | Ongoing | [Link] | Hardware, OS (Windows/Linux), Networking Basics, Security |
-| **Laptop Hardware Repair** | Completed | [Link] | Troubleshooting, Thermal Management, Component Replacement |
+| **Laptop Hardware Repair** | Completed | [**View Docs**](Hardware-Repair/README.md) | Troubleshooting, Thermal Management, Component Replacement |
 | **Linux/Virtualization** | Ongoing | [Link] | VirtualBox configuration, Ubuntu OS installation, Command Line |
 | **Future Project: Network Setup** | Planned | N/A | TBD |
 
