@@ -23,7 +23,7 @@ Documenting my transition from ESL Management to Cybersecurity, focusing on Comp
 ---
 
 ## Certifications and Study Progress
-* **CompTIA A+ (220-1101 & 220-1102):** Studying since September 2025. Mock exam scores average **74%** (Jason Dion).
+* **CompTIA A+ (220-1201 & 220-1202):** Studying since September 2025. Mock exam scores average **74%** (Jason Dion).
 * **[Future Certification: CompTIA Network+, CompTIA Security+]**
 
 ---
