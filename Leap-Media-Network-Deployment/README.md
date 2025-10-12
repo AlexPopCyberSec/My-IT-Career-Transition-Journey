@@ -68,8 +68,8 @@ A space to document the journey - thought process, challenges, and debugging as 
 * **Goal:** Set up the server's fixed IP and verify client connectivity.
 * **Process** 
 
-12th Oct 2025 - Ubuntu Server 24.04.3 LTS downloaded and installed using Oracle Virtual Box. The server has 25gb of storage, 2 cores and 4Gb ram. The initial installation went well. I configured the **Bridged Adapter** prior to installing, so we’ve received an IPv4 address successfully. Our server is online and connected to the Internet.␣␣
-12 Oct 2025 - Successfully assigned the static IP to my server. First, I ran `ip a` to verify the address, then `ip route show default` to find my default gateway address. I ran `ls /etc/netplan/` to see the file name, which I then edited, assigning it the $\mathbf{192.168.100.200/24}$ address. **Minor obstacles with YAML text alignment were sorted quickly**, reinforcing the need for attention to detail in configuration files. Our server now has a static IP address, which was verified using the `ip a show enp0s3` command.
+12th Oct 2025 - Ubuntu Server 24.04.3 LTS downloaded and installed using Oracle Virtual Box. The server has 25gb of storage, 2 cores and 4Gb ram. The initial installation went well. I configured the **Bridged Adapter** prior to installing, so we’ve received an IPv4 address successfully. Our server is online and connected to the Internet
+**12 Oct 2025 - Successfully assigned the static IP to my server. First, I ran `ip a` to verify the address, then `ip route show default` to find my default gateway address. I ran `ls /etc/netplan/` to see the file name, which I then edited, assigning it the $\mathbf{192.168.100.200/24}$ address. **Minor obstacles with YAML text alignment were sorted quickly**, reinforcing the need for attention to detail in configuration files. Our server now has a static IP address, which was verified using the `ip a show enp0s3` command.
 
 * **Result:** 
 
