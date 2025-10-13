@@ -70,17 +70,23 @@ A space to document the journey - thought process, challenges, and debugging as 
 
 12th Oct 2025 - Ubuntu Server 24.04.3 LTS downloaded and installed using Oracle Virtual Box. The server has 25gb of storage, 2 cores and 4Gb ram. The initial installation went well. I configured the **Bridged Adapter** prior to installing, so we’ve received an IPv4 address successfully. Our server is online and connected to the Internet.
 
-**12 Oct 2025 - Successfully assigned the static IP to my server. First, I ran `ip a` to verify the address, then `ip route show default` to find my default gateway address. I ran `ls /etc/netplan/` to see the file name, which I then edited, assigning it the $\mathbf{192.168.100.200/24}$ address. **Minor obstacles with YAML text alignment were sorted quickly**, reinforcing the need for attention to detail in configuration files. Our server now has a static IP address, which was verified using the `ip a show enp0s3` command.
+12 Oct 2025 - Successfully assigned the static IP to my server. First, I ran `ip a` to verify the address, then `ip route show default` to find my default gateway address. I ran `ls /etc/netplan/` to see the file name, which I then edited, assigning it the $\mathbf{192.168.100.200/24}$ address. **Minor obstacles with YAML text alignment were sorted quickly**, reinforcing the need for attention to detail in configuration files. Our server now has a static IP address, which was verified using the `ip a show enp0s3` command.
 
-**12 Oct 2025 - Nginx successfully installed. Performed `sudo apt update` to update the list, then `sudo apt install nginx -y`, `sudo systemctl status nginx` verified it was active, received the `Welcome to Nginx` message in the browser.
+12 Oct 2025 - Nginx successfully installed. Performed `sudo apt update` to update the list, then `sudo apt install nginx -y`, `sudo systemctl status nginx` verified it was active, received the `Welcome to Nginx` message in the browser.
 
-* **Result:** 
 
-### **[Date] - Phase 2: Service and Samba Deployment**
+* **Result:** Server succesfully installed, static IP assigned, nginx service deployed.
+
+### **October 2025 - Phase 2: Service and Samba Deployment**
 
 * **Goal:** Get file sharing and user accounts ready.
-* **Process** 
-* **Result:** 
+* **Process**
+
+* 13.10.2025 – I realized we have insufficient VMs configured so I configured another Linux VM assigning it 25gb of storage, 8gb ram and 2 CPUs. I then proceeded to group and user creation using `sudo group add [name]` and `sudo adduser [name] –ingroup [name]`, setting up separate passwords for each user. Checked using `id [username]` and verified the users are in correct groups.
+
+The next step was setting up Samba, so first we installed the Samba service using `sudo apt install samba –y`, and verified the service is active - `sudo systemctl status smbd`. I added our 3 linux users to samba using `sudo smbpasswd –a [name]` and setting unique passwords. Our Samba service is now installed, active, and has 3 users. We have succesfully completed the first 2 phases of our network deployment and will now proceed to phase 3 – Security and Permissions.
+
+* **Result:** Groups and user accounts added, Samba installed, functionality verified.
 
 ### **[Date] - Phase 3: Security and Final Verification**
 
