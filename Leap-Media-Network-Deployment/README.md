@@ -84,7 +84,7 @@ A space to document the journey - thought process, challenges, and debugging as 
 
 * 13.10.2025 – I realized we have insufficient VMs configured so I configured another Linux VM assigning it 25gb of storage, 8gb ram and 2 CPUs. I then proceeded to group and user creation using `sudo group add [name]` and `sudo adduser [name] –ingroup [name]`, setting up separate passwords for each user. Checked using `id [username]` and verified the users are in correct groups.
 
-The next step was setting up Samba, so first we installed the Samba service using `sudo apt install samba –y`, and verified the service is active - `sudo systemctl status smbd`. I added our 3 linux users to samba using `sudo smbpasswd –a [name]` and setting unique passwords. Our Samba service is now installed, active, and has 3 users. We have succesfully completed the first 2 phases of our network deployment and will now proceed to phase 3 – Security and Permissions.
+* The next step was setting up Samba, so first we installed the Samba service using `sudo apt install samba –y`, and verified the service is active - `sudo systemctl status smbd`. I added our 3 linux users to samba using `sudo smbpasswd –a [name]` and setting unique passwords. Our Samba service is now installed, active, and has 3 users. We have succesfully completed the first 2 phases of our network deployment and will now proceed to phase 3 – Security and Permissions.
 
 * **Result:** Groups and user accounts added, Samba installed, functionality verified.
 
@@ -95,10 +95,10 @@ The next step was setting up Samba, so first we installed the Samba service usin
 
 * 14.10.2025 – Time for user permissions and security. First I created 2 folders, marketing_share (which will be a shared file everyone can access, and finance_secure (only available to the finance user). `sudo mkdir /srv/[name]` used to create folders. I then proceeded to changing the group owners using `sudo chown :g_marketing /srv/marketing_share` and `sudo chown u_finance:g_finance /srv/finance_secure`. Permission changed using `sudo chmod 775 /srv/marketing_share` and `sudo chmod 770 /srv/finance_secure` resulting in the marketing folder being available to all in the group, the marketing group being the owner and having the read/write permissions, while the finance folder is only available to the finance user. Principle of Least Privilege has just been succesfully implemented.
 
-Samba Share Configuration – we now need to configure the Samba service to regonize and enforce the file system permissions across the network. First, I performed a backup of the samba configuration file - `sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.bak`. I then added the following commands to the end of the configuration file:
+* Samba Share Configuration – we now need to configure the Samba service to regonize and enforce the file system permissions across the network. First, I performed a backup of the samba configuration file - `sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.bak`. I then added the following commands to the end of the configuration file:
 
 [Marketing_Share] 
-    comment = Zenith Marketing General Access Files 
+    comment = Leap Media General Access Files 
     path = /srv/marketing_share 
     browseable = yes 
     read only = no 
@@ -107,7 +107,7 @@ Samba Share Configuration – we now need to configure the Samba service to rego
     directory mask = 0775 
 
 [Finance_Secure] 
-    comment = Zenith Marketing Highly Restricted Finance Data 
+    comment = Leap Media Highly Restricted Finance Data 
     path = /srv/finance_secure 
     browseable = no 
     read only = no 
