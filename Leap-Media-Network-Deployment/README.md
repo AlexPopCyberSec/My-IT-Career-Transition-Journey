@@ -68,11 +68,11 @@ A space to document the journey - thought process, challenges, and debugging as 
 * **Goal:** Set up the server's fixed IP and verify client connectivity.
 * **Process** 
 
-12th Oct 2025 - Ubuntu Server 24.04.3 LTS downloaded and installed using Oracle Virtual Box. The server has 25gb of storage, 2 cores and 4Gb ram. The initial installation went well. I configured the **Bridged Adapter** prior to installing, so we’ve received an IPv4 address successfully. Our server is online and connected to the Internet.
+* 12th Oct 2025 - Ubuntu Server 24.04.3 LTS downloaded and installed using Oracle Virtual Box. The server has 25gb of storage, 2 cores and 4Gb ram. The initial installation went well. I configured the **Bridged Adapter** prior to installing, so we’ve received an IPv4 address successfully. Our server is online and connected to the Internet.
 
-12 Oct 2025 - Successfully assigned the static IP to my server. First, I ran `ip a` to verify the address, then `ip route show default` to find my default gateway address. I ran `ls /etc/netplan/` to see the file name, which I then edited, assigning it the $\mathbf{192.168.100.200/24}$ address. **Minor obstacles with YAML text alignment were sorted quickly**, reinforcing the need for attention to detail in configuration files. Our server now has a static IP address, which was verified using the `ip a show enp0s3` command.
+* 12 Oct 2025 - Successfully assigned the static IP to my server. First, I ran `ip a` to verify the address, then `ip route show default` to find my default gateway address. I ran `ls /etc/netplan/` to see the file name, which I then edited, assigning it the $\mathbf{192.168.100.200/24}$ address. **Minor obstacles with YAML text alignment were sorted quickly**, reinforcing the need for attention to detail in configuration files. Our server now has a static IP address, which was verified using the `ip a show enp0s3` command.
 
-12 Oct 2025 - Nginx successfully installed. Performed `sudo apt update` to update the list, then `sudo apt install nginx -y`, `sudo systemctl status nginx` verified it was active, received the `Welcome to Nginx` message in the browser.
+* 12 Oct 2025 - Nginx successfully installed. Performed `sudo apt update` to update the list, then `sudo apt install nginx -y`, `sudo systemctl status nginx` verified it was active, received the `Welcome to Nginx` message in the browser.
 
 
 * **Result:** Server succesfully installed, static IP assigned, nginx service deployed.
@@ -88,8 +88,42 @@ The next step was setting up Samba, so first we installed the Samba service usin
 
 * **Result:** Groups and user accounts added, Samba installed, functionality verified.
 
-### **[Date] - Phase 3: Security and Final Verification**
+### **October 2025 - Phase 3: Permission and Security**
 
 * **Goal:** Implement the security policy and solve any final access issues.
-* **Process** 
+* **Process**
+
+* 14.10.2025 – Time for user permissions and security. First I created 2 folders, marketing_share (which will be a shared file everyone can access, and finance_secure (only available to the finance user). `sudo mkdir /srv/[name]` used to create folders. I then proceeded to changing the group owners using `sudo chown :g_marketing /srv/marketing_share` and `sudo chown u_finance:g_finance /srv/finance_secure`. Permission changed using `sudo chmod 775 /srv/marketing_share` and `sudo chmod 770 /srv/finance_secure` resulting in the marketing folder being available to all in the group, the marketing group being the owner and having the read/write permissions, while the finance folder is only available to the finance user. Principle of Least Privilege has just been succesfully implemented.
+
+Samba Share Configuration – we now need to configure the Samba service to regonize and enforce the file system permissions across the network. First, I performed a backup of the samba configuration file - `sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.bak`. I then added the following commands to the end of the configuration file:
+
+[Marketing_Share] 
+    comment = Zenith Marketing General Access Files 
+    path = /srv/marketing_share 
+    browseable = yes 
+    read only = no 
+    valid users = @g_marketing 
+    create mask = 0775 
+    directory mask = 0775 
+
+[Finance_Secure] 
+    comment = Zenith Marketing Highly Restricted Finance Data 
+    path = /srv/finance_secure 
+    browseable = no 
+    read only = no 
+    valid users = @g_finance, u_finance 
+    force group = g_finance 
+    create mask = 0770 
+    directory mask = 0770 
+
+resulting in file permission configuration being applied across the network.
+
+
+* **Result:** Principal of Least Privilege implemented, permissions and Samba Service configured successfully. 
+
+
+### **October 2025 - Phase 4: Security and Final Verification**
+
+* **Goal:** Test and verify full network functionality.
+* **Process:** 
 * **Result:** 
