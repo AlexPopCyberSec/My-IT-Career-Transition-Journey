@@ -125,5 +125,9 @@ resulting in file permission configuration being applied across the network.
 ### **October 2025 - Phase 4: Security and Final Verification**
 
 * **Goal:** Test and verify full network functionality.
-* **Process:** 
+* **Process:**
+
+* 16th October - Setting up local users on my Windows hosts and Linux VMs. I realized I am missing one more Windows machine so tried installing another VM and got stuck in the loop of creating (and proving I'm not a robot) new Microsoft account. Bypassed the issue by disabling the internet connection (VM Settings  ->  Network  ->  Adapter  ->  Not Attached). Windows installed successfully with a local user. This lead to further issues such as the drivers not being installed (no sound, no full hd display option and not running smoothly). I installed VirtualBox Guest Additions but it didn't seem to have fixed the issues. I updated the drivers manually, still no change, so I poceeded to check Windows Update and ran into another problem. Windows upade could not update my sistem because I'd allocated to little storage when I installed it (only 20 GB - beginner's mistake). This was fixed by adding more storage using CLI on my host machine and the `VBoxManage modifymedium command`. I then extended the drive in my VM and ran the update. Issue persisted. I reinstalled Guest Additions, issue still unresolved.
+
+
 * **Result:** 
