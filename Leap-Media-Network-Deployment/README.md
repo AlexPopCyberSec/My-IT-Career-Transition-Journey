@@ -129,5 +129,10 @@ resulting in file permission configuration being applied across the network.
 
 * 16th October - Setting up local users on my Windows hosts and Linux VMs. I realized I am missing one more Windows machine so tried installing another VM and got stuck in the loop of creating (and proving I'm not a robot) new Microsoft account. Bypassed the issue by disabling the internet connection (VM Settings  ->  Network  ->  Adapter  ->  Not Attached). Windows installed successfully with a local user. This lead to further issues such as the drivers not being installed (no sound, no full hd display option and not running smoothly). I installed VirtualBox Guest Additions but it didn't seem to have fixed the issues. I updated the drivers manually, still no change, so I poceeded to check Windows Update and ran into another problem. Windows upade could not update my sistem because I'd allocated to little storage when I installed it (only 20 GB - beginner's mistake). This was fixed by adding more storage using CLI on my host machine and the `VBoxManage modifymedium command`. I then extended the drive in my VM and ran the update. Issue persisted. I reinstalled Guest Additions, issue still unresolved.
 
+* 18th October 
+
+After multiple failed attempts to sort the issues I decided to remove the machine and perform a clean install. Prior to installing, I configured the graphics adapter to VBoxSVGA, allocating 128mb of video memory, and enabling 3D Acceleration. I also made sure the audio controller was set to Inter HD Audio. After the installation, I noticed the sound issue was fixed, but the display issue persisted. I installed the Guest Additions, however,  the display still couldn’t be set to 1920x1080 Full HD.  I then proceeded to forcing the resolution fix outside the VM using the command `VBoxManage controlvm "machinename" setvideomodehint 1920 1080 32` and the issue was finally resolved.
+
+
 
 * **Result:** 
