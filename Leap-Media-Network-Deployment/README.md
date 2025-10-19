@@ -52,7 +52,7 @@ The network operates on a single physical network using **Bridged Adapter** mode
 
 | Client Test | Access Requirement | Command / Action |
 | :--- | :--- | :--- |
-| **u_esigner Designer** | **Operational:** Must save a file to the Marketing Share. | Access `\\192.168.100.200\marketing_share` from File Explorer. |
+| **u_designer Designer** | **Operational:** Must save a file to the Marketing Share. | Access `\\192.168.100.200\marketing_share` from File Explorer. |
 | **u_sales Sales** | **Security:** Must connect remotely. | Run `ssh sales@192.168.100.200` successfully. |
 | **u_finance Finance** | **Security:** Must access the secure folder. | `cd /srv/finance_secure` and `ls -l` must work. |
 | **u_designer / u_sales Test**| **Security:** Must be denied access to the Finance folder. | Attempting to `cd` into `/srv/finance_secure` must return **"Permission denied"** for non-finance users. |
