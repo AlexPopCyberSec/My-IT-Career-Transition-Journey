@@ -147,15 +147,15 @@ FINAL STEP – Full network functionality verification:
 * **Project Success Summary (Leap Marketing Network)**
 
 1. Network Foundation (CompTIA Network+)
-    Static IP Configuration: Set a permanent address (192.168.100.200) for the server (SRV−01), ensuring stability.
-    Bridged Networking: Configured all VMs to operate as independent devices on the same physical network.
-    Connectivity: All four client devices successfully pinged and connected to the server.
+    *Static IP Configuration: Set a permanent address (192.168.100.200) for the server (SRV−01), ensuring stability.
+    *Bridged Networking: Configured all VMs to operate as independent devices on the same physical network.
+    *Connectivity: All four client devices successfully pinged and connected to the server.
 
 2. Service Deployment & Administration (CompTIA A+/Network+)
-    Web Services: Installed and verified Nginx, making the server publicly accessible via HTTP.
-    File Services: Installed, configured, and restarted the Samba service to facilitate cross-OS file sharing.
-    Remote Access: Installed and enabled the OpenSSH Server on SRV−01 and verified secure remote login from a Windows client.
+    *Web Services: Installed and verified Nginx, making the server publicly accessible via HTTP.
+    *File Services: Installed, configured, and restarted the Samba service to facilitate cross-OS file sharing.
+    *Remote Access: Installed and enabled the OpenSSH Server on SRV−01 and verified secure remote login from a Windows client.
 
 3. Security and Permissions (CompTIA Security+)
-    Principle of Least Privilege (PoLP): Successfully implemented and verified the PoLP.
-    Local Security: Used net localgroup guests to set Windows client users as standard, low-privilege accounts.
+    *Principle of Least Privilege (PoLP): Successfully implemented and verified the PoLP.
+    *Local Security: Used net localgroup guests to set Windows client users as standard, low-privilege accounts.
