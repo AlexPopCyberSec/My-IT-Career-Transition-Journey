@@ -84,7 +84,7 @@ A space to document the journey - thought process, challenges, and debugging as 
 
 * 13.10.2025 – I realized we have insufficient VMs configured so I configured another Linux VM assigning it 25gb of storage, 8gb ram and 2 CPUs. I then proceeded to group and user creation using `sudo group add [name]` and `sudo adduser [name] –ingroup [name]`, setting up separate passwords for each user. Checked using `id [username]` and verified the users are in correct groups.
 
-* The next step was setting up Samba, so first we installed the Samba service using `sudo apt install samba –y`, and verified the service is active - `sudo systemctl status smbd`. I added our 3 linux users to samba using `sudo smbpasswd –a [name]` and setting unique passwords. Our Samba service is now installed, active, and has 3 users. We have succesfully completed the first 2 phases of our network deployment and will now proceed to phase 3 – Security and Permissions.
+* The next step was setting up Samba, so first we installed the Samba service using `sudo apt install samba –y`, and verified the service is active - `sudo systemctl status smbd`. I added our 3 users to Samba using `sudo smbpasswd –a [name]` and setting unique passwords. Our Samba service is now installed, active, and has 3 users. We have succesfully completed the first 2 phases of our network deployment and will now proceed to phase 3 – Security and Permissions.
 
 * **Result:** Groups and user accounts added, Samba installed, functionality verified.
 
@@ -95,7 +95,7 @@ A space to document the journey - thought process, challenges, and debugging as 
 
 * 14.10.2025 – Time for user permissions and security. First I created 2 folders, marketing_share (which will be a shared file everyone can access, and finance_secure (only available to the finance user). `sudo mkdir /srv/[name]` used to create folders. I then proceeded to changing the group owners using `sudo chown :g_marketing /srv/marketing_share` and `sudo chown u_finance:g_finance /srv/finance_secure`. Permission changed using `sudo chmod 775 /srv/marketing_share` and `sudo chmod 770 /srv/finance_secure` resulting in the marketing folder being available to all in the group, the marketing group being the owner and having the read/write permissions, while the finance folder is only available to the finance user. Principle of Least Privilege has just been succesfully implemented.
 
-* Samba Share Configuration – we now need to configure the Samba service to regonize and enforce the file system permissions across the network. First, I performed a backup of the samba configuration file - `sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.bak`. I then added the following commands to the end of the configuration file:
+* Samba Share Configuration – we now need to configure the Samba service to recognize and enforce the file system permissions across the network. First, I performed a backup of the Samba configuration file - `sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.bak`. I then added the following commands to the end of the configuration file:
 
 [Marketing_Share] 
     comment = Leap Media General Access Files 
@@ -127,12 +127,35 @@ resulting in file permission configuration being applied across the network.
 * **Goal:** Test and verify full network functionality.
 * **Process:**
 
-* 16th October - Setting up local users on my Windows hosts and Linux VMs. I realized I am missing one more Windows machine so tried installing another VM and got stuck in the loop of creating (and proving I'm not a robot) new Microsoft account. Bypassed the issue by disabling the internet connection (VM Settings  ->  Network  ->  Adapter  ->  Not Attached). Windows installed successfully with a local user. This lead to further issues such as the drivers not being installed (no sound, no full hd display option and not running smoothly). I installed VirtualBox Guest Additions but it didn't seem to have fixed the issues. I updated the drivers manually, still no change, so I poceeded to check Windows Update and ran into another problem. Windows upade could not update my sistem because I'd allocated to little storage when I installed it (only 20 GB - beginner's mistake). This was fixed by adding more storage using CLI on my host machine and the `VBoxManage modifymedium command`. I then extended the drive in my VM and ran the update. Issue persisted. I reinstalled Guest Additions, issue still unresolved.
+* 16th October - Setting up local users on my Windows hosts and Linux VMs. I realized I am missing one more Windows machine so tried installing another VM and got stuck in the loop of creating (and proving I'm not a robot) new Microsoft account. Bypassed the issue by disabling the internet connection (VM Settings  ->  Network  ->  Adapter  ->  Not Attached). Windows installed successfully with a local user. This led to further issues such as the drivers not being installed (no sound, no full hd display option and not running smoothly). I installed VirtualBox Guest Additions but it didn't seem to have fixed the issues. I updated the drivers manually, still no change, so I poceeded to check Windows Update and ran into another problem. Windows update could not update my system because I'd allocated too little storage when I installed it (only 20 GB - beginner's mistake). This was fixed by adding more storage using the CLI on my host machine and the `VBoxManage modifymedium command`. I then extended the drive in my VM and ran the update. Issue persisted. I reinstalled Guest Additions, issue still unresolved.
 
-* 18th October 
+* 18th October - After multiple failed attempts to sort the issues I decided to remove the machine and perform a clean install. Prior to installing, I configured the graphics adapter to VBoxSVGA, allocating 128mb of video memory, and enabling 3D Acceleration. I also made sure the audio controller was set to Inter HD Audio. After the installation, I noticed the sound issue was fixed, but the display issue persisted. I installed the Guest Additions, however,  the display still couldn’t be set to 1920x1080 Full HD.  I then proceeded to forcing the resolution fix outside the VM using the command `VBoxManage controlvm "machinename" setvideomodehint 1920 1080 32` and the issue was finally resolved.
 
-After multiple failed attempts to sort the issues I decided to remove the machine and perform a clean install. Prior to installing, I configured the graphics adapter to VBoxSVGA, allocating 128mb of video memory, and enabling 3D Acceleration. I also made sure the audio controller was set to Inter HD Audio. After the installation, I noticed the sound issue was fixed, but the display issue persisted. I installed the Guest Additions, however,  the display still couldn’t be set to 1920x1080 Full HD.  I then proceeded to forcing the resolution fix outside the VM using the command `VBoxManage controlvm "machinename" setvideomodehint 1920 1080 32` and the issue was finally resolved.
+* 19th October – Final user check and verification. All users on all machines have been added, PoLP applied, local security ensured using `net localgroup users [name] /delete` `net localgroup guests [name] /add`. Each user has their own IP address and they all ping the server 192.168.100.200. Along the way I realized I had only added 3 users to the server and actually need 4, so I added the last user and proceeded to full network functionality test.
+
+FINAL STEP – Full network functionality verification:
+
+1. Director can access the shared marketing file, read and write.
+2. Sales manager can access the shared marketing file, read and write.
+3. Finance manager cannot access the shared marketing file, he has access to the secure finance folder, no other users can access it.
+4. Designer had issues accessing the secure folder even though he was already in the g_marketing group. The issue was resolved by running `sudo smbpasswd –e u_designer` and got a message `Failed to find user u_designer in passdb backend`. Somehow, the user was added to the group, but his password was unknown to the Samba server. Issue resolved by running `sudo smbpasswd –a u_designer` and adding the password. Result: Designer can access the shared marketing folder.
+5. Remote access verified – OpenSSH installed on the server using `sudo apt update && sudo apt install openssh-server –y`, enabled using `sudo systemctl enable --now ssh`, ran `sudo systemctl status ssh` to verify it’s active. Sales manager remotely accessed the server using `ssh u_sales@192.168.100.200`.
 
 
+* **Result:** PROJECT COMPLETED SUCESSFULLY
 
-* **Result:** 
+* **Project Success Summary (Leap Marketing Network)**
+
+1. Network Foundation (CompTIA Network+)
+    Static IP Configuration: Set a permanent address (192.168.100.200) for the server (SRV−01), ensuring stability.
+    Bridged Networking: Configured all VMs to operate as independent devices on the same physical network.
+    Connectivity: All four client devices successfully pinged and connected to the server.
+
+2. Service Deployment & Administration (CompTIA A+/Network+)
+    Web Services: Installed and verified Nginx, making the server publicly accessible via HTTP.
+    File Services: Installed, configured, and restarted the Samba service to facilitate cross-OS file sharing.
+    Remote Access: Installed and enabled the OpenSSH Server on SRV−01 and verified secure remote login from a Windows client.
+
+3. Security and Permissions (CompTIA Security+)
+    Principle of Least Privilege (PoLP): Successfully implemented and verified the PoLP.
+    Local Security: Used net localgroup guests to set Windows client users as standard, low-privilege accounts.
