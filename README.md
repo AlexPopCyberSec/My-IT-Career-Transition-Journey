@@ -1,13 +1,13 @@
 # My-IT-Career-Transition-Journey
-Documenting my transition from ESL Management to Cybersecurity, focusing on CompTIA Trifecta, homelabs, and hands-on projects.
+Documenting my transition from ESL Management to Cybersecurity, focusing on CompTIA and AWS certifications, homelabs, and hands-on projects.
 
 # My IT Career Transition Portfolio: Aleksandar Popov
 
 ## About Me
-* **Background:** 8 years of teaching, 3 years of management in the ESL industry, 2 years in retail sales (PC Store), 2 years in direct sales (telecom services).
-* **Key Soft Skills:** Advanced communication, team leadership, strategic problem-solving and adaptability, critical thinking, presentation and public speaking.
-* **Current Focus:** Transitioning to IT, primarily targeting  entry-level IT jobs (preferably Cybersecurity roles), open to internships, remote work, willing to relocate.
-* **Certifications in Progress:** CompTIA A+ (Core 1 & 2).
+* **Background:** 8 years of teaching, 3 years of management in the ESL industry in Asia, 2 years in retail sales (PC Store), 2 years in direct sales (telecom services) in Serbia.
+* **Key Soft Skills:** Advanced communication, team leadership and management, strategic problem-solving and critical thinking, presentation and public speaking, adaptability.
+* **Currently Seeking:** Entry-Level roles in **Network Operations (NOC/Net Admin)**, **Systems Administration (SysAdmin)**, **GRC/Security Awareness Training**, or **Trainee Cybersecurity** roles. Specifically targeting environments that offer exposure to **Cloud Infrastructure (AWS/Azure)** and **Compliance Frameworks**. **Ready to relocate globally for the right opportunity (open to internships).**
+* **Certifications in Progress:** CompTIA Network+.
 
 ---
 
@@ -15,19 +15,29 @@ Documenting my transition from ESL Management to Cybersecurity, focusing on Comp
 
 | Project/Skill | Status | Documentation Link | Key Skills Demonstrated |
 | :--- | :--- | :--- | :--- |
-| **CompTIA A+ Preparation** | Ongoing | [Link] | Hardware, OS (Windows/Linux), Networking Basics, Security |
-| **Laptop Hardware Repair** | Completed | [**View Docs**](Hardware-Repair/README.md) | Troubleshooting, Thermal Management, Component Replacement |
-| **Linux/Virtualization** | Ongoing | [**View Docs**](Linux-Virtualization-Lab/README.md) | VirtualBox configuration, Ubuntu OS installation, Command Line |
-| **Future Project: Network Setup** | Ongoing | [**View Docs**](Leap-Media-Network-Deployment/README.md) | Static IP addressing, Bridged Networking, Web Server Deployment (Nginx), File Sharing (Samba), User/Group Management, and File Permissions |
+| **CompTIA Network+ Preparation** | Ongoing | [Link] | TCP/IP, Subnetting, Network Topologies, Routing/Switching Fundamentals, Network Security Controls |
+| **Laptop Hardware Repair** | Completed | [**View Docs**](Hardware-Repair/README.md) | CompTIA A+ Knowledge: Troubleshooting, Thermal Management, Component Replacement |
+| **Linux/Virtualization** | Completed | [**View Docs**](Linux-Virtualization-Lab/README.md) | CompTIA A+ Knowledge: VirtualBox configuration, Ubuntu OS installation, Command Line |
+| **Leap Media: Network Deployment** | Completed | [**View Docs**](Leap-Media-Network-Deployment/README.md) | CompTIA Network+ Knowledge: Static IP addressing, Bridged Networking, Web Server Deployment (Nginx), File Sharing (Samba), User/Group Management, and File Permissions |
 
 ---
 
-## Certifications and Study Progress
-* **CompTIA A+ (220-1201 & 220-1202):** Studying since September 2025. Mock exam scores average **74%** (Jason Dion).
-* **[Future Certification: CompTIA Network+, CompTIA Security+]**
+### **CURRENT FOCUS:** Accelerating career pivot from ESL Management/Training into high-demand Cloud Security and/or Governance, Risk, and Compliance (GRC). Leveraging strong soft skills to translate technical requirements into business policies.
+
+---
+
+####  Certifications and Study Progress
+
+* **Foundation Built:** **CompTIA A+ Knowledge (220-1201 & 1202 Objectives Mastered).** Completed foundational study with mock exam scores averaging **75%**.
+* **Immediate Targets (Q4 2025 - Q1 2026):**
+    * **CompTIA Network+ (N+):** Mastering core infrastructure protocols for security context.
+    * **AWS Certified Cloud Practitioner (CCP):** Validating platform knowledge for modern security environments.
+* **Future Targets (Q1 2026 - Q3 2026):**
+    * **CompTIA Security+ (S+):** Direct specialization toward GRC and defense.
+
 
 ---
 
 ## Contact and Next Steps
 * **LinkedIn:** [TBA]
-* **Seeking:** Remote Entry-Level IT Support/Help Desk or Trainee Cybersecurity roles. Ready to relocate.
+* **Seeking:** Entry-Level roles in **Network Operations (NOC/Net Admin)**, **Systems Administration (SysAdmin)**, **GRC/Security Awareness Training**, or **Trainee Cybersecurity** roles. Specifically targeting environments that offer exposure to **Cloud Infrastructure (AWS/Azure)** and **Compliance Frameworks**. **Ready to relocate globally for the right opportunity (open to internships).**
