@@ -2,7 +2,7 @@
 
 ## **Overview**
 
-This project simulates the deployment and security configuration of a 6-device, multi-operating system (OS) network environment for a fictional digital marketing agency, "Leap Media". The goal is to showcase practical proficiency in network deployment, system administration, and security principles (CompTIA A+ Core 1 & 2 skills).
+This project simulates the deployment and security configuration of a 6-device, multi-operating system (OS) network environment for a fictional digital marketing agency, "Leap Media". The goal is to showcase practical proficiency in network deployment, system administration, and security principles (CompTIA A+/Network+/Security+).
 
 **Key Skills Demonstrated:** Static IP addressing, Bridged Networking, Web Server Deployment (Nginx), File Sharing (Samba), User/Group Management, and File Permissions (`chmod`/`chown`).
 
@@ -14,11 +14,11 @@ The network operates on a single physical network using **Bridged Adapter** mode
 
 | Device Name | OS / Package | Host Machine | Network Role | User Role (The Human Element) |
 | :--- | :--- | :--- | :--- | :--- |
-| **SRV-01 (SERVER)** | Ubuntu Server | Main Laptop | **Static IP** (`192.168.100.200` Recommended) | Central File/Web Server |
-| **CLI-01 (DESIGNER)** | Windows Host | Main Laptop | **DHCP** | Creative Director (Needs fast, reliable access to large design files). |
-| **CLI-02 (SALES)** | Ubuntu Host | Main Laptop | **DHCP** | Sales Manager (Requires secure, remote access via SSH for report generation). |
-| **CLI-03 (MAC-SIM)** | Windows VM | Laptop B | **DHCP** | Graphic Designer (Simulates a Mac workstation). |
-| **CLI-04 (FINANCE)** | Linux VM | Laptop B | **DHCP** | Finance Manager (Needs highly secure, restricted access for sensitive data). |
+| **SRV-01 (SERVER)** | Ubuntu Server | Laptop A | **Static IP** (`192.168.100.200` Recommended) | Central File/Web Server |
+| **u_director (DIRECTOR)** | Windows Host | Laptop A | **DHCP** | Creative Director (Needs fast, reliable access to large design files). |
+| **u_sales (SALES MANAGER)** | Windows Host | Laptop B | **DHCP** | Sales Manager (Requires secure, remote access via SSH for report generation). |
+| **u_designer (DESIGNER)** | Windows VM | Laptop A | **DHCP** | Graphic Designer (Simulates a Mac workstation). |
+| **u_finance (FINANCE MANAGER)** | Linux VM | Laptop B | **DHCP** | Finance Manager (Needs highly secure, restricted access for sensitive data). |
 
 ***
 
@@ -52,10 +52,10 @@ The network operates on a single physical network using **Bridged Adapter** mode
 
 | Client Test | Access Requirement | Command / Action |
 | :--- | :--- | :--- |
-| **CLI-01 Designer** | **Operational:** Must save a file to the Marketing Share. | Access `\\192.168.100.200\marketing_share` from File Explorer. |
-| **CLI-02 Sales** | **Security:** Must connect remotely. | Run `ssh sales@192.168.100.200` successfully. |
-| **CLI-04 Finance** | **Security:** Must access the secure folder. | `cd /srv/finance_secure` and `ls -l` must work. |
-| **CLI-03 / CLI-02 Test**| **Security:** Must be denied access to the Finance folder. | Attempting to `cd` into `/srv/finance_secure` must return **"Permission denied"** for non-finance users. |
+| **u_esigner Designer** | **Operational:** Must save a file to the Marketing Share. | Access `\\192.168.100.200\marketing_share` from File Explorer. |
+| **u_sales Sales** | **Security:** Must connect remotely. | Run `ssh sales@192.168.100.200` successfully. |
+| **u_finance Finance** | **Security:** Must access the secure folder. | `cd /srv/finance_secure` and `ls -l` must work. |
+| **u_designer / u_sales Test**| **Security:** Must be denied access to the Finance folder. | Attempting to `cd` into `/srv/finance_secure` must return **"Permission denied"** for non-finance users. |
 
 ***
 
