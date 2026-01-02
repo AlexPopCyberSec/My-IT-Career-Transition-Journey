@@ -1,13 +1,14 @@
 # My-IT-Career-Transition-Journey
-Documenting my transition from ESL Management to Cybersecurity, focusing on CompTIA and AWS certifications, homelabs, and hands-on projects.
+Documenting my transition from ESL Management to Enterprise IT (ultimate goal - Cybersecurity), focusing on CompTIA and AWS certifications, homelabs, and hands-on projects.
 
 # My IT Career Transition Portfolio: Aleksandar Popov
 
 ## About Me
-* **Background:** 8 years of teaching, 3 years of management in the ESL industry in Asia, 2 years in retail sales (PC Store), 2 years in direct sales (telecom services) in Serbia.
+* **Background:** 8 years of teaching experience, 3 of those in management and IT in the ESL industry in Asia, 3 years in retail sales, hardware troubleshooting, and OS Installation (PC Store), 2 years in direct sales (telecom services) in Serbia.
 * **Key Soft Skills:** Advanced communication, team leadership and management, strategic problem-solving and critical thinking, presentation and public speaking, adaptability.
-* **Currently Seeking:** Entry-Level roles in **Network Operations (NOC/Net Admin)**, **Systems Administration (SysAdmin)**, **GRC/Security Awareness Training**, or **Trainee Cybersecurity** roles. Specifically targeting environments that offer exposure to **Cloud Infrastructure (AWS/Azure)** and **Compliance Frameworks**. **Ready to relocate globally for the right opportunity (open to internships).**
-* **Certifications in Progress:** CompTIA Network+.
+* **Currently Seeking:** Entry-Level roles in **IT Help Desk**, **Service Desk Dispatcher**,**Customer Success**, **Technical Account Manager**, **Network Operations (NOC/Net Admin)**, **Systems Administration (SysAdmin)**, **GRC/Security Awareness Training**, or **Trainee Cybersecurity** roles. Specifically targeting environments that offer exposure to **Cloud Infrastructure (AWS/Azure)**. **Ready to relocate globally for the right opportunity (open to internships).**
+* **Certifications Complete:** CompTIA A+.
+* **Certifications in Progress:** CompTIA Network+, AWS Certified Cloud Practicioner.
 
 ---
 
@@ -22,13 +23,10 @@ Documenting my transition from ESL Management to Cybersecurity, focusing on Comp
 
 ---
 
-### **CURRENT FOCUS:** Accelerating career pivot from ESL Management/Training into high-demand Cloud Security and/or Governance, Risk, and Compliance (GRC). Leveraging strong soft skills to translate technical requirements into business policies.
-
----
 
 ####  Certifications and Study Progress
 
-* **Foundation Built:** **CompTIA A+ Knowledge (220-1201 & 1202 Objectives Mastered).** Completed foundational study with mock exam scores averaging **75%**.
+* **Foundation Built:** **CompTIA A+ Certified**.
 * **Immediate Targets (Q4 2025 - Q1 2026):**
     * **CompTIA Network+ (N+):** Mastering core infrastructure protocols for security context.
     * **AWS Certified Cloud Practitioner (CCP):** Validating platform knowledge for modern security environments.
@@ -39,5 +37,5 @@ Documenting my transition from ESL Management to Cybersecurity, focusing on Comp
 ---
 
 ## Contact and Next Steps
-* **LinkedIn:** [TBA]
-* **Seeking:** Entry-Level roles in **Network Operations (NOC/Net Admin)**, **Systems Administration (SysAdmin)**, **GRC/Security Awareness Training**, or **Trainee Cybersecurity** roles. Specifically targeting environments that offer exposure to **Cloud Infrastructure (AWS/Azure)** and **Compliance Frameworks**. **Ready to relocate globally for the right opportunity (open to internships).**
+* **LinkedIn:** [(https://www.linkedin.com/in/aleksandar-popov-578084377/)]
+* **Seeking:** Entry-Level roles in **IT Help Desk**, **Service Desk Dispatcher**,**Customer Success**, **Technical Account Manager**, **Network Operations (NOC/Net Admin)**, **Systems Administration (SysAdmin)**, **GRC/Security Awareness Training**, or **Trainee Cybersecurity** roles. Specifically targeting environments that offer exposure to **Cloud Infrastructure (AWS/Azure)**. **Ready to relocate globally for the right opportunity (open to internships).**
