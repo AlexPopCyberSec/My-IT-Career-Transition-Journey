@@ -16,7 +16,7 @@ Documenting my transition from ESL Management to Enterprise IT (ultimate goal - 
 
 | Project/Skill | Status | Documentation Link | Key Skills Demonstrated |
 | :--- | :--- | :--- | :--- |
-| **CompTIA Network+ Preparation** | Ongoing | [Link] | TCP/IP, Subnetting, Network Topologies, Routing/Switching Fundamentals, Network Security Controls |
+| **CompTIA Network+ Preparation** | Ongoing | [**View Docs**](LeapCorp-Enterprise-Lab/README.md) | CompTIA Network+ Knowledge: Windows Server 2022, Active Directory, User/Group Management and File Permissions, Static IP addressing, Web Server Deployment, etc. |
 | **Laptop Hardware Repair** | Completed | [**View Docs**](Hardware-Repair/README.md) | CompTIA A+ Knowledge: Troubleshooting, Thermal Management, Component Replacement |
 | **Linux/Virtualization** | Completed | [**View Docs**](Linux-Virtualization-Lab/README.md) | CompTIA A+ Knowledge: VirtualBox configuration, Ubuntu OS installation, Command Line |
 | **Leap Media: Network Deployment** | Completed | [**View Docs**](Leap-Media-Network-Deployment/README.md) | CompTIA Network+ Knowledge: Static IP addressing, Bridged Networking, Web Server Deployment (Nginx), File Sharing (Samba), User/Group Management, and File Permissions |
