@@ -20,6 +20,7 @@ The environment is built on an **Isolated Internal Network** to simulate a secur
 | **PC-02** | Windows 11 | **Domain Member (Workstation)** | DHCP Assigned | **Marketing User:** Standard employee requiring domain-authenticated login. |
 | **PC-03** | Windows 11 | **Domain Member (Workstation)** | DHCP Assigned | **Sales User:** High-privilege workstation with restricted GPO settings. |
 | **PC-04** | Windows 11 | **Domain Member (Workstation)** | DHCP Assigned | **Customer Support:** High-privilege workstation with restricted GPO settings. |
+| **PC-05** | Windows 11 | **Domain Member (Workstation)** | DHCP Assigned | **Finance:** High-privilege workstation with restricted GPO settings. |
 | **WEB-01** | Ubuntu Server | **Linux Integration** | Static: `x.x.x.x` | **Web Server:** Simulates an internal company portal or dev environment. |
 
 ***
