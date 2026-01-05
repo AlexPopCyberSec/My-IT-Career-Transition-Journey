@@ -97,23 +97,44 @@ SECOND ATTEMPT
 
 At this moment switching from PowerShell to Active Directory (need to be familiar with the software as well, plenty of room to practice PowerShell later in the project.AD Configuration:
 	- added OUs as follows:
-	1.  Employees:     
-       1. Management
-	     2. Marketing
-	     3. Sales
-	     4. Customer Support
-	     5. IT
-	2. Hardware:
-	    1. Desktops
-	    2. Laptops
-	    3. Servers
-	3. Groups:
+	* 1.  Employees:     
+    *   1. Management
+	*     2. Marketing
+	*     3. Sales
+	*     4. Customer Support
+	*     5. IT
+	* 2. Hardware:
+	*    1. Desktops
+	*    2. Laptops
+	*    3. Servers
+	* 3. Groups:
 	
 
 Joining the domain:
-	- Windows 11 Pro VM (ITAdmin) installed and configured, setting up network adapter to Internal Network (EnterpriseLab), static IP assigned, Subnet assigned, DNS assigned (server), server successfully pinged.
-	- Joined leapcorp.local domain through This PC>Domain or workgroup>Change>Member of Domain>leapcorp.com
-  - IT user added in AD Users and Computers>IT>New>User> assigned name, logon name, password, and added to Domain Admins.
+- Windows 11 Pro VM (ITAdmin) installed and configured, setting up network adapter to Internal Network (EnterpriseLab), static IP assigned, Subnet assigned, DNS assigned (server), server successfully pinged.
+- Joined leapcorp.local domain through This PC>Domain or workgroup>Change>Member of Domain>leapcorp.com
+- IT user added in AD Users and Computers>IT>New>User> assigned name, logon name, password, and added to Domain Admins.
 
 * **Challenge/Lesson Learned:** **Configuration went without major issues.
 * **Result:** First user created, promoted to Domain Admin, secure password set up, ready to start batch adding other users.
+
+### **[5th January 2026] - DHCP installation and configuration**
+
+* **Process:** * Installing DHCP
+
+	- Installing DHCP from the IT Admin machine using RDP (for the sake of practice).
+	- Remote Desktop Connection enabled on the server.
+	- Connection attempt 1: unsuccessful. Firewall likely blocking us since we haven't configured anything yet and it defaults to 'Public Network'.
+	- Firewall disabled (for troubleshooting purposes), RDP connection attempt 2: unsuccessful.
+	- Now checking the TCP handshake on the IT Admin Windows 11 machine using Test-NetConnection 10.0.0.1 -Port 3389, result: FALSE.
+	- Checking if the server is listening to TCP 3389 using netstat -ano | findstr 3389, result: only showing UDP 0.0.0.0:63389, no TCP port open.
+	- Ran Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -Name "fDenyTSConnections" -Value 0 to force RDP on, restarted the service using Restart-Service TermService -Force, cechek with netstat -ano again, still only seing UDP 0.0.0.0:63389.
+	- Final check Test-NetConnection 127.0.0.1 -Port 3389, result: loopback TCPTestSucceded: false. This indicates a deeper issue with the RDP which I will come back to at a later time.
+    - Firewall settings turned back on ensuring security best practices.
+	- Now configuring DHCP directly on the server console Install-WindowsFeature DHCP -includeManagementTools.
+	- DHCP scope configured 10.0.0.100 - 10.0.0.200, network setting on the Windows machine reverted to automatic, ran ipconfig, new IP - 10.0.0.100.
+Wasted about an hour trying to troubleshoot RDP connection error, finally installed and configured the DHCP server directly on the server, working well, will return to troubleshoot RDP connection issue at a later time.
+
+* **Challenge/Lesson Learned:** **Spent an entire hour troubleshooting remote desktop connection issues, decided to install and configure it directly on the server, prioritizing stability and functionality. RDP to be fixed in the near future.
+* **Result:** DHCP operational, successfully assigning IPs to devices on the network.
+
