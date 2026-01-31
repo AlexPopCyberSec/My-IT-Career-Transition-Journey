@@ -138,3 +138,19 @@ Wasted about an hour trying to troubleshoot RDP connection error, finally instal
 * **Challenge/Lesson Learned:** **Spent an entire hour troubleshooting remote desktop connection issues, decided to install and configure it directly on the server, prioritizing stability and functionality. RDP to be fixed in the near future.
 * **Result:** DHCP operational, successfully assigning IPs to devices on the network.
 
+### **[12th January 2026] - First GPO upade - Wallpaper push**
+
+* **Process:** * Creating GPO for the default wallpaper and linking it to the right groups.
+
+	- Task completed successfully by creating a shared folder on the server and adding a wallpaper image, creating a GPO and linking it to the right user group.
+	- Created a folder  C:\Data and shared it
+	- added an image wallpaper.jpg
+	- Created a GPO for it - Opened Group Policy Management > right-click Group Policy Objects > New > Name: Wallpaper 
+	- Right-click the new GPO > Edit > User Configuration > Policies > Administrative Templates > Desktop > Dekstop > Double-click Desktop Wallpaper > wallpaper name \\DC01\Data\wallpaper.jpg > wallpaper style – fill
+	- Linking – Group Policy Management Domain Tree > Employees > IT > right-click IT > Link and existing GPO > select Wallpaper 
+	- Verification - logged into the virtual machine, forced updates (gpoupdate /force), rebooted, wallpaper in place.
+	
+
+* **Challenge/Lesson Learned:** At this moment, I realize the project reached a level of complexity where running critical infrastructure (Active Directory/DNS) on a transient host (my personal laptop inside VirtualBox) became a bottleneck. To simulate a true Always-On enterprise environment, I am migrating the stack to a dedicated Type-1 Hypervisor on bare metal (Proxmox). 
+* **Result:** Realized the impact resource constraints have on the functionality of a system. Investing in new equipment and upgrading. PROJECT ARCHIVED
+
