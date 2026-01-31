@@ -1,5 +1,7 @@
 # Project: The Enterprise Sandbox (LeapCorp)
 
+⚠️ Status: ARCHIVED / MIGRATED This project served as the initial prototype for the LeapCorp infrastructure. Due to the limitations of running an enterprise lab on a Type-2 hypervisor (VirtualBox), development has moved to a dedicated Proxmox bare-metal environment. See the production implementation here: [Link]
+
 ## **Overview**
 
 This project demonstrates the design, deployment, and management of a fully functional, isolated Enterprise Network environment. By utilizing **Windows Server 2022** and **Active Directory Domain Services (AD DS)**, this lab simulates a small-sized corporate infrastructure. The goal is to showcase proficiency in identity management, centralized governance through Group Policy, and the automation of administrative tasks via **PowerShell**.
