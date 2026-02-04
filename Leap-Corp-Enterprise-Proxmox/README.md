@@ -2,7 +2,7 @@
 
 **⚠ STATUS: ACTIVE / IN DEVELOPMENT**
 
-> **Project Migration Note:** This project is the successor to the archived VirtualBox Lab [VirtualBox Lab](../LeapCorp-Enterprise-Lab.md). It runs on dedicated Bare Metal hardware to simulate a realistic branch office environment ("Leap Corporation").
+> **Project Migration Note:** This project is the successor to the archived VirtualBox Lab [VirtualBox Lab](../LeapCorp-Enterprise-Lab/README.md). It runs on dedicated Bare Metal hardware to simulate a realistic branch office environment ("Leap Corporation").
 
 ---
 
@@ -24,21 +24,23 @@
 
 ```mermaid
 graph TD
-    Internet((Internet)) -->|ISP| Gateway[Asus RT-AX52 Gateway]
-    Gateway -->|192.168.1.1| Switch[TP-Link SG208G Managed Switch]
+    Internet((Internet)) -->|ISP| Gateway[Asus RT-AX52]
+    Gateway -->|WAN / 192.168.1.1| Switch[TP-Link SG208G]
 
-    subgraph "VLAN 1: Management"
-        Switch -->|Trunk Port| Proxmox[Dell Optiplex - Proxmox Host]
+    subgraph "VLAN 1: Mgmt"
+        Switch -->|Trunk| Proxmox[Dell Optiplex Host]
     end
 
-    subgraph "Virtual Infrastructure (Inside Proxmox)"
-        Proxmox -->|vSwitch| DC01[DC-01: Windows Server 2022]
-        Proxmox -->|vSwitch| FS01[FS-01: File Server]
-        Proxmox -->|vSwitch| W11[Client: Windows 11 Enterprise]
+    subgraph "Virtual Infrastructure"
+        Proxmox --> pfSense[🔥 pfSense VM]
+        
+        pfSense -->|VLAN 10| Servers[Servers: DC01, FS01]
+        pfSense -->|VLAN 20| Clients[Clients: Win11]
+        pfSense -->|VLAN 666| Untrusted[Untrusted: Kali]
     end
 
-    subgraph "Physical Endpoints"
-        Switch -->|Port 3| Laptop[Admin Laptop]
+    subgraph "Physical"
+        Switch -->|VLAN 20| Laptop[Admin Laptop]
     end
 ```
 
