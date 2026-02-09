@@ -20,7 +20,7 @@ Documenting my transition from ESL Management to Enterprise IT (ultimate goal - 
 | Project/Skill | Status | Documentation Link | Key Skills Demonstrated |
 | :--- | :--- | :--- | :--- |
 | **Enterprise Infrastructure v2 (Proxmox)** | **Active** | [**View Docs**](Leap-Corp-Enterprise-Proxmox/README.md) | **Current Main Project:** Migrated AD environment to Bare Metal (Dell Optiplex). Windows Server 2022, VLANs, Advanced GPO, PowerShell Automation. |
-| **Lingo Leap Production Hardening** | Private Repo | [**View Repo**] | **Live Production Environment:** Security hardening and administration of a live educational platform. |
+| **Lingo Leap Production Hardening** | Private Repo | [**View Repo**](https://github.com/AlexPopCyberSec/lingo-leap-architecture) | **Live Production Environment:** Security hardening and administration of a live educational platform. |
 | **Leap Corp: Enterprise Sandbox (VirtualBox)** | **ARCHIVED** | [**View Docs**](LeapCorp-Enterprise-Lab/README.md) | Initial AD/DC prototype. *Note: Migrated to Proxmox due to Type-2 Hypervisor resource constraints.* |
 | **Leap Media: Network Deployment** | Completed | [**View Docs**](Leap-Media-Network-Deployment/README.md) | CompTIA Network+ Knowledge: Static IP addressing, Bridged Networking, Web Server Deployment (Nginx), File Sharing (Samba), PoLP. |
 | **Linux/Virtualization Lab** | Completed | [**View Docs**](Linux-Virtualization-Lab/README.md) | CompTIA A+ Knowledge: VirtualBox configuration, Ubuntu OS installation, Command Line, Backup strategies. |
