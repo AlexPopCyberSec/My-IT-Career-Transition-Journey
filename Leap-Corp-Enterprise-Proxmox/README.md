@@ -116,10 +116,4 @@ graph TD
 
 ## 4. Project Journal (The Engineering Log)
 A raw log of the process. Real errors, real fixes.
-
-### **DATE - Phase 1: The Core Foundation (Flat Network)
-
-* **Goal:** Deploy critical infrastructure on the existing network (192.168.50.x) to establish the Active Directory environment immediately.
-* **Process** 
-* **Challenges/Lessons Learned** 
-* **Status** 
+* [View Log](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/JOURNAL.md)
