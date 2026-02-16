@@ -107,3 +107,91 @@
 * **Verification:** Ran `gpupdate /force` on client machines. Rebooted. Wallpapers applied successfully.
 * ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/IT%20wall.png)
 * ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/management%20wall.png)
+
+---
+
+#Week 2: Access Control & File Services
+
+### 📅 05/02/2026 - Bulk Hiring & AD/DNS Troubleshooting
+**Objective:** Prepare environment for bulk user creation and resolve AD/DNS race conditions.
+
+* Prepared a CSV file with 50 employees sorted across departments and a bulk hiring script.
+* **Issue:** Tried to RDP into DC01 but got a connection error.
+* **Troubleshooting:**
+  * Verified network configuration via `ipconfig` on both DC01 (Proxmox console) and IT-Admin VM.
+  * Verified connectivity via `ping 192.168.50.5` (Success).
+  * Checked Server Manager -> Remote Connection was Disabled. Enabled it with Network Level Authentication (NLA).
+  * Checked Firewall via `Get-NetConnectionProfile` -> Showed as **Private Network** (This is a problem for pushing GPOs).
+* **Fixing the Network Profile:**
+  * Attempted restarting NlaSvc (`Restart-Service NlaSvc -Force`) -> Timed out.
+  * Changed NLA to Automatic (Delayed Start) and rebooted -> Issue persisted.
+  * Cleared specific DNS suffixes and deleted network profile signatures via Registry Editor (`HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Signatures\Unmanaged`).
+  * **Deep Dive:** Checked DNS and local server event logs. Found that the DNS server was waiting for AD DS to signal initial synchronization, and Disk I/O operations were retrying.
+* **Root Cause:** Virtual disk was configured incorrectly (Default/no cache instead of Write-back), causing a race condition between NLA and DNS on boot.
+* **The Fix:**
+  * Shut down server -> Reconfigured virtual hardware -> Booted up (NLA reverted to Active).
+  * Enforced Domain Controller awareness via Registry: 
+    `HKLM\SYSTEM\CurrentControlSet\Services\NlaSvc\Parameters` -> Added DWORD `AlwaysExpectDomainController` = 1.
+* **Result:** Server rebooted -> NetworkCategory: **DomainAuthenticated**. ISSUE RESOLVED.
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week%202/solution.png)
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week%202/registry.png)
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week%202/domain%20authenticated.png)
+
+---
+
+### 📅 09/02/2026 - File Server (FS01) Provisioning
+**Objective:** Deploy and configure a dedicated File Server for the domain.
+
+* **Hardware:** 2 Cores, 2GB RAM, 60GB SSD (Write-back and discard enabled, not). Installed Standard CLI environment only.
+* **Issue:** No network adapters found due to missing drivers.
+* **The Fix:** Installed VirtIO drivers via command line (`\virtio-win-gt-x64.exe`), installed and rebooted.
+* **Configuration:**
+  * Assigned IP: `192.168.50.6/24`, Gateway: `192.168.50.1`.
+  * **Mistake:** Forgot to set DNS. Domain join failed. 
+  * Reconfigured DNS -> Preferred: `192.168.50.5` (DC01), Alternate: `8.8.8.8`.
+  * Domain Join (`leapcorp.local`) -> **SUCCESS**.
+* **Remote Management:**
+  * Added FS01 to Server Manager on DC01.
+  * **Issue:** Could not access `\\FS01\c$` (Error 0x80070035 - Network path not found). Ping failed.
+  * **The Fix:** Configured Firewall rules via PowerShell on FS01:
+    ```powershell
+    Set-NetFirewallRule -DisplayGroup "File and Printer Sharing" -Enabled True
+    Set-NetFirewallRule -DisplayGroup "Remote Desktop" -Enabled True
+    Set-NetFirewallRule -DisplayGroup "Remote Management Service" -Enabled True
+    ```
+* **Result:** Ping successful. Accessed `\\FS01\c$` and created `CorpData` directories (Sales, HR, Marketing, Management, IT, Public).
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week%202/FS01.png)
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week%202/firewall%20rules.png)
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week%202/corp%20data.png)
+
+---
+
+### 📅 10/02/2026 - Storage Services & GPO Drive Mapping
+**Objective:** Configure SMB shares, set NTFS permissions, and deploy mapped drives via GPO.
+
+* **Issue:** Proxmox dashboard reported IPs missing for DC01/FS01. Verified via `get-service qemu-ga` that Guest Additions weren't running properly.
+* **The Fix:** Ran `msiexec /i D:\guest-agent\qemu-ga-x86_64.msi /qn` on FS01 and DC01. QEMU Guest Agent now running.
+* **File Share Setup:**
+  * FS01 was missing the File and Storage Services role.
+  * Ran `Install-WindowsFeature -Name FS-FileServer -ComputerName FS01` from DC01.
+* **Permission Management:**
+  * Attempted to map shares to departments, but Security Groups were missing.
+  * Ran a custom PowerShell ISE script to dynamically create groups (`SG_GroupName`) based on OUs and populate them.
+  * Attempted to create the Marketing share with Modify permissions, but received "ACCESS IS DENIED".
+  * **Root Cause:** The Administrator account was locked out of the Marketing folder at the NTFS level.
+  * **The Fix:** Ran a script using the `takeown` command to force NTFS permission reset and regain Admin ownership.
+* **GPO Drive Mapping:**
+  * Created GPO: `Drive Maps` (User Configuration -> Preferences -> Drive Maps).
+  * Utilized **Item-Level Targeting** to map Drive `Z:` strictly to `SG_Management`.
+  * Repeated process for all departments.
+* **Verification:** Logged in as CEO (Thao). Drive `Z:` mapped and operational.
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week%202/qemu%20ga%20FS01.png)
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week%202/qemu%20ga%20DC01.png)
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week%202/qemu%20ga%20FS01%20proxmox.png)
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week%202/qemu%20ga%20DC01%20proxmox.png)
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week%202/FS01%20Filerserver%20Role.png)
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week%202/script%20error.png)
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week%202/drive%20map.png)
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week%202/marketing%20share%20fix.png)
+
+---
