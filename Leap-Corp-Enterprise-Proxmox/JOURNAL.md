@@ -9,7 +9,8 @@
 * **Issue:** Interference detected. Main router speed: 460Mbps, Lab router: 260Mbps (placed too close).
 * **Fix:** Relocated Asus router to another room using a 20m CAT6 cable.
 * **Result:** Speed stabilized at **514Mbps**.
-* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/Active%20Directory.png)
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/Asus%20firmware%20update.png)
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/Asus%20Router.png)
 
 ---
 
@@ -195,3 +196,76 @@
 * ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week%202/marketing%20share%20fix.png)
 
 ---
+
+### 📅 11/02/2026 - Out-Of-Band Management & Tailscale Setup
+**Objective:** Establish remote access to the Hypervisor to facilitate deployment of an Edge Firewall during the Lunar New Year holiday.
+
+* **Action:** Installed Tailscale VPN directly on the Proxmox Hypervisor.
+    * `curl -fsSL https://tailscale.com/install.sh | sh`
+    * Authenticated via `tailscale up` and confirmed "Login Successful" in browser.
+* **Subnet Routing:** Enabled the 'Router' feature to access the internal lab network.
+    * `tailscale set --advertise-routes=192.168.50.0/24`
+    * Confirmed the route in the Tailscale Admin Console and disabled Key Expiry for persistent access.
+* **Issue:** IP forwarding was disabled on Proxmox; Tailscale could not relay traffic to the subnet.
+* **The Fix:** * Enabled IPv4/IPv6 forwarding via sysctl:
+      ```bash
+      echo 'net.ipv4.ip_forward = 1' | tee -a /etc/sysctl.d/99-tailscale.conf
+      echo 'net.ipv6.conf.all.forwarding = 1' | tee -a /etc/sysctl.d/99-tailscale.conf
+      sysctl -p /etc/sysctl.d/99-tailscale.conf
+      systemctl restart tailscaled
+      ```
+* **Verification:** Disconnected laptop from LAN, connected to mobile 5G hotspot, and successfully accessed the Proxmox Dashboard via the Tailscale IP.
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week%203/proxmox%20shell.png)
+
+
+---
+
+### 📅 15/02/2026 - IT Drive Map Troubleshooting (Remote)
+**Objective:** Resolve GPO mapping issues for the IT Department across different OUs.
+
+* **Issue:** The IT drive map (I:) was missing. Attempted `gpupdate /force` but received a **Time Sync Error** between the client and DC01.
+* **Troubleshooting:**
+    * Manually corrected the system time; issue persisted.
+    * **The Fix (Time):** Forced a domain hierarchy sync via PowerShell:
+      ```powershell
+      w32tm /config /syncfromflags:domhier /update
+      net stop w32time && net start w32time
+      w32tm /resync
+      ```
+* **Issue 2:** Time synced, but the drive still didn't appear. 
+* **Diagnosis:** Ran `gpresult /h` and realized the GPO was linked only to the `01_Employees` OU, but the admin account resided in `00_Admins`.
+* **The Fix (GPO):** Linked the "Drive Maps" GPO to the `00_Admins` OU.
+* **Result:** After a re-log to refresh the Kerberos ticket, the **I: IT Department** drive appeared successfully.
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week%203/gpresult.png)
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week%203/OU.png)
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week%203/drive%20map.png)
+
+---
+
+### 📅 16/02/2026 - User Restrictions & Folder Redirection
+**Objective:** Secure the local environment by hiding the C: drive and redirecting user data to the File Server (FS01).
+
+**Hidden Share Configuration:**
+* Created a hidden share on FS01: `\\FS01\Users$`.
+* Enabled **Access-Based Enumeration (ABE)** so users only see their own folders.
+
+**GPO Implementation (User Restrictions):**
+* **Drive Restriction:** Enabled "Hide these specified drives in My Computer" for the **C: Drive** only.
+* **Folder Redirection:** Redirected *Documents* and *Desktop* to `\\FS01\Users$\%username%`.
+* Unchecked "Grant user exclusive rights" to ensure Admin visibility for backups.
+
+**Permission Troubleshooting:**
+* **Issue:** Redirection failed (folders empty) because the previous "Battering Ram" script had locked NTFS permissions too tightly.
+* **The Fix:** Applied Microsoft-recommended permissions for Folder Redirection via PowerShell:
+  ```powershell
+  $Path = "\\FS01\c$\CorpData\Users"
+  # Allow folder creation at root
+  icacls $Path /grant "Authenticated Users:(RX,AD)"
+  # Grant Creator Owner full control over subfolders
+  icacls $Path /grant "CREATOR OWNER:(OI)(CI)(IO)F"
+
+* **Result:** Logged in as Thao Nguyen (Management); files successfully synced to FS01 and C: drive is hidden from view.
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week%203/folder%20redirection%20GPO.png)
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week%203/folder%20permissions.png)
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week%203/c%20drive%20hide.png)
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week%203/folder%20redirection.png)
