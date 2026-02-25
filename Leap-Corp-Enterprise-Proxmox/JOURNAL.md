@@ -220,6 +220,8 @@
 
 ---
 
+#Week 3: Remote Access, Drive Map Troubleshooting, Folder Redirection
+
 ### 📅 15/02/2026 - IT Drive Map Troubleshooting (Remote)
 **Objective:** Resolve GPO mapping issues for the IT Department across different OUs.
 
@@ -269,3 +271,56 @@
 * ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week%203/folder%20permissions.png)
 * ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week%203/c%20drive%20hide.png)
 * ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week%203/folder%20redirection.png)
+
+#Week 4: Automated Software Deployment
+
+### 📅 18/02/2026 - Automated Software Deployment (Google Chrome)
+**Objective:** Automate the rollout of Google Chrome Enterprise across all domain-joined workstations using Group Policy.
+
+* **Repository Setup:**
+    * Created a hidden file share `\\FS01\Software$` to host installers.
+    * **Permissions:** Granted **Read** access to `Domain Computers` and `Authenticated Users` to ensure the system account can access the MSI during boot.
+* **GPO Configuration:**
+    * Created GPO: `APP-Deploy-GoogleChrome`.
+    * Path: `Computer Configuration > Policies > Software Settings > Software installation`.
+    * Assigned the **Google Chrome Enterprise MSI (64-bit)** package via the UNC path.
+* **Verification:** Ran `gpupdate /force` on a client VM and rebooted. Google Chrome was successfully installed at the system level before user login.
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week%204/chrome%20GPO.png)
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week%204/chrome.png)
+  
+
+---
+
+### 📅 21/02/2026 - Security GPOs & Scripted Deployment (AnyDesk)
+**Objective:** Implement security timeouts and deploy non-MSI software using PowerShell Startup Scripts. I understand this is not an industry standard, the goal is to demonstrate a deeper understanding of the AD infrastructure and secure PowerShell execution. 
+
+* **Security Policy:** * Deployed a **Screen Saver Timeout** GPO (900 seconds) to the `01_Employees` OU to enforce workstation locking.
+* **AnyDesk Deployment (The .exe Challenge):**
+    * Since AnyDesk was provided as an `.exe` rather than an `.msi`, standard GPO software installation was not an option.
+    * **Scripting:** Authored `Install-AnyDesk.ps1` to check for existing installations before running the silent installer:
+      ```powershell
+      $InstallPath = "C:\Program Files (x86)\AnyDesk\AnyDesk.exe"
+      $Installer = "\\FS01\Software$\AnyDesk.exe"
+      if (-not (Test-Path $InstallPath)) {
+          Start-Process -FilePath $Installer -ArgumentList "--install `"C:\Program Files (x86)\AnyDesk`" --start-with-win --silent --create-shortcuts --create-desktop-icon" -Wait
+      }
+      ```
+* **Issue:** The script failed to run on reboot. 
+* **Troubleshooting:** * Suspected a race condition; enabled "Always wait for the network at computer startup and logon" in GPO.
+    * **Result:** Issue persisted. Manual testing revealed that **PowerShell Execution Policy** was blocking the script from running.
+
+---
+
+### 📅 25/02/2026 - Scripting Security & Execution Policies
+**Objective:** Securely enable PowerShell scripting to facilitate automated deployments.
+
+* **Understanding Execution Policies:** Verified the script worked manually by bypassing restrictions locally: `Set-ExecutionPolicy Bypass -Scope Process -Force`.
+* **The Fix (GPO Driven):**
+    * Instead of leaving the environment vulnerable with a global "Bypass," I configured a formal Script Execution Policy.
+    * **GPO:** `APP-Deploy-AnyDesk` -> `Windows Components > Windows PowerShell`.
+    * **Setting:** Enabled **"Turn on Script Execution"** and set it to **"Allow local scripts and remote signed scripts."**
+* **Verification:** * Performed `gpupdate /force` and a system restart. 
+    * **Result:** The Startup Script executed correctly, and AnyDesk is now present on all target machines.
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week%204/anydesk%20non-msi.png)
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week%204/anydesk%20non-msi%20script%20secure.png)
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week%204/Any%20Desk.png)
