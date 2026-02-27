@@ -9,8 +9,8 @@ Documenting my transition from ESL Management to Enterprise IT (ultimate goal - 
 * **Background:** 8 years of teaching experience, 3 of those in management and IT in the ESL industry in Asia, 3 years in retail sales, hardware troubleshooting, and OS Installation (PC Store), 2 years in direct sales (telecom services) in Serbia.
 * **Key Soft Skills:** Advanced communication, team leadership and management, strategic problem-solving and critical thinking, presentation and public speaking, adaptability.
 * **Currently Seeking:** Entry-Level roles in **IT Help Desk**, **Service Desk Dispatcher**,**Customer Success**, **Technical Account Manager**, **Network Operations (NOC/Net Admin)**, **Systems Administration (SysAdmin)**, or **Trainee Cybersecurity** roles. Specifically targeting environments that offer exposure to **Cloud Infrastructure (AWS/Azure)**. 
-* **Certifications Complete:** CompTIA A+, CompTIA Network+.
-* **Certifications in Progress:** CompTIA Security+, Microsoft MS-900.
+* **Certifications Complete:** CompTIA A+, CompTIA Network+, CompTIA Security+.
+* **Certifications in Progress:** Microsoft MS-900.
 * **Availability:** (GMT +7) Available remotely for Daytime Business Hours/Graveyard Shifts for the US/UK/ANZ market. Open to relocation globally for the right opportunity.
 
 ---
