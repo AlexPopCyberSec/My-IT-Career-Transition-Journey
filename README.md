@@ -31,12 +31,14 @@ Documenting my transition from ESL Management to Enterprise IT (ultimate goal - 
 
 ####  Certifications and Study Progress
 
-* **Foundation Built:** **CompTIA A+, CompTIA Network+ Certified**.
+* **Foundation Built:**
+* **December 8th** - CompTIA A+
+* **January 19th** - CompTIA Network+
+* **February 26th** - CompTIA Security+
 * **Immediate Targets (Q1 2026):**
-    * **CompTIA Security+:** Direct specialization toward IT administration and security.
     * **Microsoft Azure MS-900:** Validating platform knowledge for modern security environments.
 * **Future Targets (Q1 2026 - Q3 2026):**
-    * **Hands-On Projects** Upskill aggressively through enterprise network simulations, hybrid environments (on-premise and cloud), deploying and using security tools.
+    * **Hands-On Projects** - Upskill aggressively through enterprise network simulations, hybrid environments (on-premise and cloud), deploying and using security tools.
 
 
 ---
