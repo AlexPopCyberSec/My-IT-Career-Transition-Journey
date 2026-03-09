@@ -1,5 +1,5 @@
 # 📔 Engineering Journal
-#Week 1: Infrastructure & Core Identity
+# Week 1: Infrastructure & Core Identity
 
 ### 📅 23/01/2026 - Network Physical Layer Setup
 **Objective:** Establish a physically separate lab network using Asus RT-AX52 daisy-chained to the main ISP router.
@@ -111,7 +111,7 @@
 
 ---
 
-#Week 2: Access Control & File Services
+# Week 2: Access Control & File Services
 
 ### 📅 05/02/2026 - Bulk Hiring & AD/DNS Troubleshooting
 **Objective:** Prepare environment for bulk user creation and resolve AD/DNS race conditions.
@@ -220,7 +220,7 @@
 
 ---
 
-#Week 3: Remote Access, Drive Map Troubleshooting, Folder Redirection
+# Week 3: Remote Access, Drive Map Troubleshooting, Folder Redirection
 
 ### 📅 15/02/2026 - IT Drive Map Troubleshooting (Remote)
 **Objective:** Resolve GPO mapping issues for the IT Department across different OUs.
@@ -272,7 +272,7 @@
 * ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week%203/c%20drive%20hide.png)
 * ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week%203/folder%20redirection.png)
 
-#Week 4: Automated Software Deployment
+# Week 4: Automated Software Deployment
 
 ### 📅 18/02/2026 - Automated Software Deployment (Google Chrome)
 **Objective:** Automate the rollout of Google Chrome Enterprise across all domain-joined workstations using Group Policy.
@@ -324,3 +324,8 @@
 * ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week%204/anydesk%20non-msi.png)
 * ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week%204/anydesk%20non-msi%20script%20secure.png)
 * ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week%204/Any%20Desk.png)
+
+# Week 5: Phase 4 - Network Migration
+
+Due to the complexity of the task, and to demonstrate expertise and the fast learning process, I have decided to upload the entire RAW engineering log.
+View Log(https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/The%20Great%20Migration%20(RAW%20Journal).md) with all the issues, struggles, and fixes.
