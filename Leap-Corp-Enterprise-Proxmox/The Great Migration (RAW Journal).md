@@ -1,6 +1,6 @@
-#WEEK 5 - PHASE 4#
+# WEEK 5 - PHASE 4
 
-##THE GREAT MIGRATION
+## THE GREAT MIGRATION
 The time has finally come to migrate my homelab from a flat to a VLAN-segmented network.
 
 **2/3/2026**
