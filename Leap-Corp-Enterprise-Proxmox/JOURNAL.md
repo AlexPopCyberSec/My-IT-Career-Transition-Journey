@@ -328,4 +328,4 @@
 # Week 5: Phase 4 - Network Migration
 
 Due to the complexity of the task, and to demonstrate expertise and the fast learning process, I have decided to upload the entire RAW engineering log.
-View Log(https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/The%20Great%20Migration%20(RAW%20Journal).md) with all the issues, struggles, and fixes.
+[**View Log**](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/The%20Great%20Migration%20(RAW%20Journal).md) with all the issues, struggles, and fixes.
