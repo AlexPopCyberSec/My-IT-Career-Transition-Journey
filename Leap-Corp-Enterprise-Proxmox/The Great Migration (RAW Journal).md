@@ -1,7 +1,7 @@
 # WEEK 5 - PHASE 4
 
 ## THE GREAT MIGRATION
-The time has finally come to migrate my homelab from a flat to a VLAN-segmented network.
+In an effort to upskill to enterprise-level standards, I'm migrating my homelab from a flat network to a VLAN-segmented environment, documenting every step of the way.
 
 **2/3/2026**
 
