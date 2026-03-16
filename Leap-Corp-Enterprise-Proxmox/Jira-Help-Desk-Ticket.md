@@ -1,4 +1,4 @@
-# 11/03/2026 Helpdesk Simulation: Legacy Hardware Optimization & Resource Reclamation
+# Helpdesk Simulation: Legacy Hardware Optimization & Resource Reclamation
 ### 11/03/2026
 
 **Ticket ID:** LH-4 (LeapCorp Helpdesk)
