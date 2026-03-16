@@ -329,7 +329,7 @@
 ### 📅 02/03/2026 - 07/03/2026
 
 Due to the complexity of the task, and to demonstrate expertise and the fast learning process, I have decided to upload the entire RAW engineering log.
-[**View Log**](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/The%20Great%20Migration%20(RAW%20Journal).md) with all the issues, struggles, and fixes.
+[**View Log**](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/The-Great-Migration-RAW-Journal.md) with all the issues, struggles, and fixes.
 
 # Week 6: Jira Ticketing and Nessus Vulnerability scan
 ### 📅 09/03/2026 - 14/03/2026
