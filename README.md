@@ -8,9 +8,9 @@ Documenting my transition from ESL Management to Enterprise IT (ultimate goal - 
 **Current Role:** Head Teacher & IT Administrator @ Lingo Leap
 * **Background:** 8 years of teaching experience, 3 of those in management and IT in the ESL industry in Asia, 3 years in retail sales, hardware troubleshooting, and OS Installation (PC Store), 2 years in direct sales (telecom services) in Serbia.
 * **Key Soft Skills:** Advanced communication, team leadership and management, strategic problem-solving and critical thinking, presentation and public speaking, adaptability.
-* **Currently Seeking:** Entry-Level roles in **IT Help Desk**, **Service Desk Dispatcher**,**Customer Success**, **Technical Account Manager**, **Network Operations (NOC/Net Admin)**, **Systems Administration (SysAdmin)**, or **Trainee Cybersecurity** roles. Specifically targeting environments that offer exposure to **Cloud Infrastructure (AWS/Azure)**. 
-* **Certifications Complete:** CompTIA A+, CompTIA Network+, CompTIA Security+.
-* **Certifications in Progress:** Microsoft MS-900.
+* **Currently Seeking:** Entry-Level roles in **IT Help Desk**, **Service Desk Dispatcher**,**Customer Success**, **Technical Account Manager**, **Network Operations (NOC/Net Admin)**, **Systems Administration (SysAdmin)**, or **Trainee Cybersecurity** roles. Specifically targeting environments that offer exposure to **Cloud Infrastructure (Microsoft Azure)**. 
+* **Certifications Complete:** CompTIA A+, CompTIA Network+, CompTIA Security+, Microsoft MS-900.
+* **Certifications in Progress:** Microsoft AZ-900.
 * **Availability:** (GMT +7) Available remotely for Daytime Business Hours/Graveyard Shifts for the US/UK/ANZ market. Open to relocation globally for the right opportunity.
 
 ---
@@ -35,9 +35,11 @@ Documenting my transition from ESL Management to Enterprise IT (ultimate goal - 
 * **December 8th** - CompTIA A+
 * **January 19th** - CompTIA Network+
 * **February 26th** - CompTIA Security+
-* **Immediate Targets (Q1 2026):**
-    * **Microsoft Azure MS-900:** Validating platform knowledge for modern security environments.
-* **Future Targets (Q1 2026 - Q3 2026):**
+* **March 18th** - Microsoft: 365 Fundamentals (MS900) 
+* **Immediate Targets (Q2 2026):**
+    * **Microsoft Azure AZ-900:** Validating platform knowledge for modern security environments.
+* **Future Targets (Q3 2026 - Q4 2026):**
+    * **Microsoft MD-102 and AZ104:** Path towards Full Stack Cloud Administrator
     * **Hands-On Projects** - Upskill aggressively through enterprise network simulations, hybrid environments (on-premise and cloud), deploying and using security tools.
 
 
