@@ -15,7 +15,7 @@ As part of my transition into Enterprise IT, I use this directory to document si
 | Ticket ID | Issue Description | Primary Technologies & Concepts |
 | :--- | :--- | :--- |
 | **[LH-4](./01-Legacy-Hardware-Optimization.md)** | Severe System Latency & Freezing | Windows OS Optimization, Resource Reclamation, Hardware Lifecycle |
-| **[LH-5](./02-Intel-Driver-Conflict.md)** | High CPU Usage (`igfxem.exe`) | Process Triage, Driver Remediation, Clean Installation |
+| **[LH-5](./02-Intel-Driver-Conflict.md)** | Corrupt Intel UHD Graphics Drivers (`igfxem.exe`) | Process Triage, Driver Remediation, Clean Installation |
 
 ---
 *These simulations reflect real-world scenarios designed to showcase active problem-solving and documentation standards expected in a Tier 1 / Tier 2 Enterprise Service Desk environment.*
