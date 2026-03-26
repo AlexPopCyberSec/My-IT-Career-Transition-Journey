@@ -33,7 +33,7 @@ A residential user reported severe system latency and freezing, significantly im
 
 **Final Result:** System responsiveness improved. Advised user that modern applications will still cause bottlenecks on this specific hardware.
 
-* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week-6/internal-notes.png)
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Helpdesk-Ticketing-Simulations/images/01/internal-notes.png)
 
 ---
 
@@ -53,7 +53,7 @@ A residential user reported severe system latency and freezing, significantly im
 > Aleksandar Popov
 > IT Support Specialist
 
-* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week-6/communication.png)
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Helpdesk-Ticketing-Simulations/images/01/communication.png)
 
 ---
 
