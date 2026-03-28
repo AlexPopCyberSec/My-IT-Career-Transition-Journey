@@ -333,7 +333,7 @@ Due to the complexity of the task, and to demonstrate expertise and the fast lea
 
 # Week 6: Jira Ticketing and Nessus Vulnerability scan
 ### 📅 09/03/2026 - 14/03/2026
-* Jira Help Desk Ticket Simulation [**View Log**](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/Jira-Help-Desk-Ticket.md)
+* Jira Help Desk Ticket Simulation [**View Log**](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Helpdesk-Ticketing-Simulations/01-Legacy-Hardware-Optimization.md)
 * Nessus Vulnerability Scan [**View Log**](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/Nessus-Vulnerability-Scan-Log.md)
 
 # Week 7: Jira Ticketing and (Unexpected) Threat Hunting
