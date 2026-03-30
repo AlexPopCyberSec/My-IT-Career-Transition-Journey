@@ -5,7 +5,7 @@
 > **🌐 Project Progression:**
 > * **⏪ Previous Phase:** Started as an archived [VirtualBox Lab](../LeapCorp-Enterprise-Lab/README.md).
 > * **📍 Current Phase:** Dedicated Bare Metal (Proxmox) branch office environment.
-> * **⏭️ Next Phase:** Extended to Azure/Microsoft 365! View the Cloud Integration here: [Leap Corp: Hybrid Cloud Architecture](../Leap-Corp-Hybrid-Cloud/README.md)
+> * **⏭️ Next Phase:** Extended to Azure/Microsoft 365! View the Cloud Integration here: [Leap Corp: Hybrid Cloud Architecture](../Leap-Corp-Cloud-Integration/README.md)
 
 ---
 
