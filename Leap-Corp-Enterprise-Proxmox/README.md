@@ -1,8 +1,11 @@
 # Leap Industries: Enterprise Infrastructure (Proxmox)
 
-**⚠ STATUS: ACTIVE / IN DEVELOPMENT**
+**✅ STATUS: ON-PREM FOUNDATION COMPLETE**
 
-> **Project Migration Note:** This project is the successor to the archived VirtualBox Lab [VirtualBox Lab](../LeapCorp-Enterprise-Lab/README.md). It runs on dedicated Bare Metal hardware to simulate a realistic branch office environment ("Leap Corporation").
+> **🌐 Project Progression:**
+> * **⏪ Previous Phase:** Started as an archived [VirtualBox Lab](../LeapCorp-Enterprise-Lab/README.md).
+> * **📍 Current Phase:** Dedicated Bare Metal (Proxmox) branch office environment.
+> * **⏭️ Next Phase:** Extended to Azure/Microsoft 365! View the Cloud Integration here: [Leap Corp: Hybrid Cloud Architecture](../Leap-Corp-Hybrid-Cloud/README.md)
 
 ---
 
