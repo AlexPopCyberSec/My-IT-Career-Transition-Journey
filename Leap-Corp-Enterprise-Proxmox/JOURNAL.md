@@ -340,3 +340,106 @@ Due to the complexity of the task, and to demonstrate expertise and the fast lea
 ### 📅 16/03/2026 - 21/03/2026
 * Jira Help Desk Ticket Simulation [**View Log**](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Helpdesk-Ticketing-Simulations/02-Intel-Driver-Conflict.md)
 * Threat Hunting Case Study [**View Log**](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Threat-Analysis-MSP-Website-Compromise/README.md)
+
+# Week 8: Splunk Installation & Attack Simulation
+### 📅 23/03/2026: Splunk Installation and Setup
+
+### VM Configuration
+* **CPU Type:** host (physical processor passthrough) - 1 socket, 2 cores
+* **RAM:** 4096 MB - ballooning disabled (dedicated RAM for Splunk)
+* **HDD:** 32 GB - writeback enabled (Note: In enterprise, avoid writeback to prevent power-loss corruption)
+* **Network:** VirtIO paravirtualized, VLAN tag 666
+* **OS:** Ubuntu Server 24.04 (Fixed mirror verification via temporary pfSense allow-all rule)
+
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week-8/ubuntu-server.png)
+
+### User Configuration Fix
+**Issue:** Accidental identical naming (`siem01@siem01`).
+**The Fix:**
+1. Create new user: `sudo adduser leapadmin`
+2. Grant sudo status: `sudo usermod -aG sudo leapadmin`
+3. Switch user: `su – leapadmin`
+4. Delete old user: `sudo deluser --remove-home siem01`
+
+---
+
+## 📅 25/03/2026: Splunk Deployment & Data Ingestion
+
+### Installation Steps
+* **Download:** `wget -O splunk-9.4.3-linux-amd64.deb https://download.splunk.com/products/splunk/releases/9.4.3/linux/splunk-9.4.3-237ebbd22314-linux-amd64.deb`
+* **Install:** `sudo dpkg -i splunk-9.4.3-linux-amd64.deb`
+* **Start:** `sudo /opt/splunk/bin/splunk start --accept-license`
+* **Persistence:** `sudo /opt/splunk/bin/splunk enable boot-start`
+
+### Storage Expansion Fix
+**Issue:** Low disk space warning (LVM partition not utilizing full disk).
+**The Fix:**
+* `sudo lvextend -l +100%FREE /dev/mapper/ubuntu--vg-ubuntu--lv`
+* `sudo resize2fs /dev/mapper/ubuntu--vg-ubuntu--lv`
+* `sudo /opt/splunk/bin/splunk restart`
+
+### Receiver Setup
+* **Splunk Web GUI:** Settings -> Forwarding and receiving -> Receive Data -> New -> Port **9997**
+
+---
+
+## 🛰️ Forwarder Configurations
+
+### DC01 (Windows Domain Controller)
+* **Download:** `Invoke-WebRequest -Uri "https://download.splunk.com/products/universalforwarder/releases/9.1.2/windows/splunkforwarder-9.1.2-b6b9c8185839-x64-release.msi" -OutFile "$env:USERPROFILE\Desktop\SplunkForwarder.msi"`
+* **Manual Configuration (inputs.conf):**
+  Set path: `C:\Program Files\SplunkUniversalForwarder\etc\system\local\inputs.conf`
+  Stanzas: Enable Application, System, and Security logs for index `main`.
+* **Connectivity Troubleshooting:** Initially failed `Test-NetConnection` on 9997.
+  **Fix:** Created pfSense firewall rule (Interface: Servers, Protocol: TCP, Dest: 192.168.66.10, Port: 9997).
+  **Result:** Connection Succeeded.
+
+### FS01 (File Server)
+* **Unattended Install:** `msiexec.exe /i "C:\SplunkForwarder.msi" AGREETOLICENSE=Yes SPLUNKD_INITIAL_ADMIN_PASSWORD="admin" RECEIVING_INDEXER="192.168.66.10:9997" /quiet`
+* **Restarting Service:** `cd "C:\Program Files\SplunkUniversalForwarder\bin"` -> `.\splunk restart`
+
+### pfSense Syslog Integration
+1. **Splunk Side:** Data Inputs -> UDP -> Port 514 -> Syslog -> Index: main.
+2. **pfSense Side:** Status -> System Logs -> Remote Logging -> Target: 192.168.66.10:514.
+
+**Outcome:** All hosts (DC01, FS01, pfSense) active in Splunk.
+
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week-8/firewall-check.png)
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week-8/firewall-dc01-siem.png)
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week-8/pfSense.png)
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week-8/hosts.png)
+
+---
+
+## 📅 28/03/2026: Kali Attack Simulation
+
+### Scenario: VPN Compromise
+**Goal:** Simulate external attacker access and analyze logs.
+**Setup:** Kali on bare metal (Outside lab).
+
+### Network Routing Fix
+**Issue:** Routing to VLAN behind firewall failed (Void shouting).
+**The Fix:** `sudo ip route add 192.168.10.0/24 via 192.168.50.164` (Routes traffic through pfSense WAN IP).
+**Outcome:** Ping successful.
+
+### SMB Brute Force Attack
+Executed via improvised script:
+`for pass in $(cat /usr/share/wordlists/fasttrack.txt); do smbclient -L //192.168.10.5 -U "Administrator%$pass"; done`
+
+### Splunk Investigation
+* **Findings:** Logged ~250 login attempts.
+* **Query:** `index="main" host="DC01"`
+* **Metrics:** Identified targeted account (Administrator), source IP, and an attack frequency of ~15 failed attempts/second.
+* **Visualization:** Created dashboard with pie charts for host logs and network visualization for firewall traffic.
+
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week-8/lab-setup.jpg)
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week-8/script.jpg)
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week-8/finish.png)
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week-8/splunk-logs.png)
+* ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Enterprise-Proxmox/images/week-8/splunk-analysis.png)
+
+# PROJECT CONCLUSION
+## Status: COMPLETE ✅
+## 📅 Date 30/03/2026
+* The on-prem phase has been completed successfully. While the initial scope included print server and Wazuh deployment, priority was shifted to Nessus vulnerability scanning, live Threat Hunting, and Help Desk Ticketing based on real-world encounters during the lab's lifecycle.
+* **Next Phase** : Azure Hybrid Integration [View Project](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/tree/main/Leap-Corp-Cloud-Integration)
