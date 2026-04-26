@@ -70,3 +70,55 @@ To enable automatic login without password prompts, configured a new GPO:
 ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Cloud-Integration/images/week-1/sso-gpo.png)
 
 ![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Cloud-Integration/images/week-1/thao-sso.png)
+
+# Week 2: Entra SAML Toolkit Provisioning (External App SSO Integration Practice)
+
+---
+
+### 📅 18/04/2026: Entra SAML Toolkit Provisioning
+
+**Application Setup & User Assignment**
+* **Creation:** Opened Entra ID -> Enterprise Apps -> New App -> Microsoft Entra SAML Toolkit -> Create.
+* **Assignment:** Users & Groups -> Add User/Group -> Thao Nguyen -> Select -> Assign.
+
+**SSO Deployment & SAML Configuration**
+* **Basic Configuration:** Single Sign-on -> SAML -> Basic SAML Configuration -> Edit.
+* **URLs Added:**
+  * Reply link: https://samltoolkit.azurewebsites.net/SAML/Consume
+  * Sign on URL: https://samltoolkit.azurewebsites.net/
+* **Third-Party App Setup:** * Registered an account at SAML Toolkit.
+  * Created a new SAML configuration.
+  * Pasted details from "Box 4: Set up Microsoft Entra SAML Toolkit" in Entra ID.
+  * Downloaded the certificate from Entra, uploaded it to the SAML Toolkit app, and saved.
+
+**Testing & Troubleshooting**
+* **Test Execution:** Logged into Thao Nguyen’s virtual machine, opened myapps.microsoft.com, and launched SAML Toolkit. 
+* **Result:** Nothing happened.
+* **Troubleshooting:** Realized that SAML Toolkit generated new, specific links for my login and handshake. Updated the links in Entra ID and tested again.
+* **Failure:** Received error - "Object reference not set"
+
+---
+
+### 📅 20/04/2026: Troubleshooting & Resolution
+
+**The "Clean Slate" Approach**
+* After about 2 hours of trial and error trying to sort out the handshake issue and token handover, I decided to nuke both configurations and perform a clean slate setup.
+* **Teardown:**
+  * Deleted Entra SAML Toolkit from Azure.
+  * Deleted SAML Toolkit Configuration from the third-party site.
+* **Reconfiguration:** Walked through all the steps again according to the official documentation.
+* **Result:** Encountered the exact same "Object reference not set" error.
+
+### **The Fix**
+* Realized my AI Assistant was spinning me in loops with generic troubleshooting steps. 
+* Pivoted to traditional research: Googled the specific error and found the exact solution on the Microsoft Learn community forums.
+* Followed the community-provided steps to correct the token handover process.
+* **Culprit:** Missed one step at the beginning, overlooked by the AI assistant as well. 
+* **Outcome:** Executed the SSO integration flawlessly. **ISSUE RESOLVED.**
+
+![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Cloud-Integration/images/week-2/myapps-sso.png)
+
+![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Cloud-Integration/images/week-2/solution.png)
+
+![Evidence](https://github.com/AlexPopCyberSec/My-IT-Career-Transition-Journey/blob/main/Leap-Corp-Cloud-Integration/images/week-2/toolkit-sso.png)
+
